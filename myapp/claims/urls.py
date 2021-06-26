@@ -5,8 +5,9 @@ from . import views
 app_name = 'claims'
 
 urlpatterns = [
-    path('login/', views.login, name="login"),
-    path('login/index/', views.index, name="index"),
+    # path('/', views.login, name="login")
+    path('view/', views.viewlist , name="viewlist"),
+    path('index/', views.index, name="index"),
  
 ]
 

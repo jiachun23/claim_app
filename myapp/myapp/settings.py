@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'claims',
     'crispy_forms',
+    'bootstrap_datepicker_plus',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -136,3 +137,7 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = 'index'
+
+DATE_INPUT_FORMATS = ['%Y-%m-%d']
+
+LOGIN_URL='/accs/login'

@@ -20,10 +20,11 @@ from django.conf.urls.static import static
 
 urlpatterns = [
 
+    path('accs/', include('django.contrib.auth.urls')),
     path('claims/', include('claims.urls')),
     
     # path('claims-admin/', include('claims.urls')),
-    path('admin/', admin.site.urls),
+    path('claims-admin/', admin.site.urls),
 ]
 
 if settings.DEBUG:

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>View List</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+          <th >Claim Status</th>
+          <th >Name</th>
+          <th >Email</th>
+          <th >Mobile_No</th>
+          <th >Vehicle_Year_Make</th>
+          <th >Vehicle_Model</th>
+          <th >Vehicle_No</th>
+          <th >Date_of_accident</th>
+          <th >Time_of_accident</th>
+          <th >Location</th>
+          <th >Type_of_Loss</th>
+          <th >Desrciption_of_Loss</th>
+          <th >Police_report_Lodged</th>
+          <th >Anybody_Injured</th>
+          <th ></th>
+        </tr>
+      </thead>
+    {%  for claim in claim.iterator %}
+    <tr>
+    <td>{{claim.Claim_Status}}</td>
+    <td><a href="/claims/index/?pk={{claim.id}}">{{claim.Name}}</a></td>
+    <td>{{claim.Email}}</td>
+    <td>{{claim.Mobile_No}}</td>
+    <td>{{claim.Vehicle_Year_Make}}</td>
+    <td>{{claim.Vehicle_Model}}</td>
+    <td>{{claim.Vehicle_No}}</td>
+    <td>{{claim.Date_of_accident}}</td>
+    <td>{{claim.Time_of_accident}}</td>
+    <td>{{claim.Location}}</td>
+    <td>{{claim.Type_of_Loss}}</td>
+    <td>{{claim.Desrciption_of_Loss}}</td>
+    <td>{{claim.Police_report_Lodged}}</td>
+    <td>{{claim.Anybody_Injured}}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

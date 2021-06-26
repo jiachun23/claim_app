@@ -1,9 +1,10 @@
 from django.db import models
+from django.contrib.auth.models import User
 import time
-
 
 def get_upload_filename(instance, filename):
     return "uploaded_files/%s_%s" %(str(time.time()).replace('.','_'), filename)
+
 
 class Claim(models.Model):
 
@@ -13,6 +14,7 @@ class Claim(models.Model):
     ("Windscreen Damage", "Windscreen Damage"),
     ("Theft", "Theft"),
     )
+
     options = ( 
     ("Yes", "Yes"),
     ("No", "No"),
@@ -23,7 +25,7 @@ class Claim(models.Model):
          ("Accepted", "Accepted"),
     )
 
-
+    fk_user = models.ForeignKey(User, on_delete=models.CASCADE)
     Name = models.CharField(max_length = 200)
     Email = models.EmailField()
     Mobile_No = models.CharField(max_length = 200)
@@ -32,7 +34,9 @@ class Claim(models.Model):
     Vehicle_Model = models.CharField(max_length = 200)
     Vehicle_No = models.CharField(max_length = 200)
 
-    Date_and_time_of_accident = models.DateTimeField()
+    Date_of_accident = models.DateField()
+    Time_of_accident = models.TimeField()
+
     Location = models.CharField(max_length = 200)
     Type_of_Loss = models.CharField(max_length=100,choices=loss_choice)
     Desrciption_of_Loss = models.TextField()
@@ -43,17 +47,10 @@ class Claim(models.Model):
 
     PDF_document_of_Insurance_Cover_Note = models.FileField(upload_to=get_upload_filename)
 
-    Claim_Status = models.CharField(max_length=20,choices=claim_options)
+    Claim_Status = models.CharField(max_length=20,choices=claim_options, default="In Progress")
 
     def __str__(self):
         return self.Name+' '+self.Vehicle_No
 
 
-class User(models.Model):
-
-    username = models.CharField(max_length = 200)
-    password = models.CharField(max_length = 200)
-
-    def __str__(self):
-        return self.username
 
