@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+  <h2>Login</h2>
+  <form method="post" action="/claims/login/index/">
+    {% csrf_token %}
+    <table>
+      <tr>
+
+        <td>Username<input type="text"></td>
+
+      </tr>
+      <tr>
+        <td>Password<input type="password"></td>
+      </tr>
+    </table>
+    <button type="submit">Login</button>
+  </form>
+{% endblock %}
