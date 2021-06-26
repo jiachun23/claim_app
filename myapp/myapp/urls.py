@@ -15,16 +15,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from django.shortcuts import redirect
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth import views as auth_views
+
+
 
 urlpatterns = [
-
+    
+    path('', lambda request: redirect('accs/login', permanent=False)),
     path('accs/', include('django.contrib.auth.urls')),
     path('claims/', include('claims.urls')),
-    
-    # path('claims-admin/', include('claims.urls')),
     path('claims-admin/', admin.site.urls),
+
 ]
 
 if settings.DEBUG:

@@ -28,7 +28,11 @@
     {%  for claim in claim.iterator %}
     <tr>
     <td>{{claim.Claim_Status}}</td>
+    {% if claim.Claim_Status == 'In Progress' %}
     <td><a href="/claims/index/?pk={{claim.id}}">{{claim.Name}}</a></td>
+    {% else %}
+    <td>{{claim.Name}}</td>
+    {% endif %}
     <td>{{claim.Email}}</td>
     <td>{{claim.Mobile_No}}</td>
     <td>{{claim.Vehicle_Year_Make}}</td>

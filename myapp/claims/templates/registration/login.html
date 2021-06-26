@@ -16,6 +16,10 @@
     {% endif %}
   {% endif %}
 
+  {% if user.is_authenticated %}
+    <meta http-equiv="REFRESH" content="0;url=/claims/view/">
+  {% endif %}
+
   <form method="post" action="{% url 'login' %}">
     {% csrf_token %}
     <table>
