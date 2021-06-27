@@ -30,6 +30,7 @@ def index(request):
 		'fk_user': entry
 	}
 
+
 	if request.method=="GET" and request.GET['pk'] is not None:
 		pk = request.GET['pk']
 		claim_obj = Claim.objects.filter(id=pk)
@@ -57,13 +58,9 @@ def index(request):
 		return HttpResponseRedirect('/claims/view')
 
 	if request.method == 'POST':
-		print(request.GET)
-
+		
 		form = ClaimForm(request.POST, request.FILES)
-		
-		print(request.POST)
 	
-		
 		if form.is_valid():
 			form.save()
 
@@ -73,7 +70,27 @@ def index(request):
 	return render(request, 'views/index.html', context)
 
 
+def add_record(request):
 
+	entry = User.objects.get(pk=request.user.id)
+
+	thisdict = {
+		'fk_user': entry
+	}
+
+	form = ClaimForm(thisdict)
+
+	if request.method == 'POST':
+		
+		form = ClaimForm(request.POST, request.FILES)
+	
+		if form.is_valid():
+			form.save()
+
+			return HttpResponseRedirect('/claims/view')
+
+	context = {'form':form}
+	return render(request, 'views/index.html', context)
 
 
 

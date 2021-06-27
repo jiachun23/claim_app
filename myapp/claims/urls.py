@@ -8,6 +8,7 @@ urlpatterns = [
     
     path('view/', views.viewlist , name="viewlist"),
     path('index/', views.index, name="index"),
+    path('index/add/', views.add_record, name="add_record"),
  
 ]
 
